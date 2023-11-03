@@ -40,6 +40,11 @@ class DatabaseSeeder extends Seeder
             'slug' => 'music',
         ]);
 
+        Category::create([
+            'name' => 'Anime',
+            'slug' => 'anime',
+        ]);
+
         Post::factory(20)->create();
 
         // Post::create([

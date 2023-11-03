@@ -10,7 +10,7 @@ class Post extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
-
+    protected $width = ['category', 'author'];
 
     public function category()
     {
