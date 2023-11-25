@@ -16,7 +16,6 @@
                 {!! $post->body !!}
             </article>
 
-            <a href="/posts" class="display-block mt-3 text-decoration-none">Kembali ke Halaman Blog</a>
         </div>
     </div>
 </div>
