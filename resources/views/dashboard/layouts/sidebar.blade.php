@@ -13,7 +13,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link d-flex align-items-center gap-2 {{ Request::is('dashboard/posts') ? 'text-black' : '' }}" href="/dashboard/posts">
+            <a class="nav-link d-flex align-items-center gap-2 {{ Request::is('dashboard/posts*') ? 'text-black' : '' }}" href="/dashboard/posts">
               <i class="bi bi-file-earmark"></i>
               My posts
             </a>
