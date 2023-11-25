@@ -7,6 +7,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class DashboardPostController extends Controller
 {
@@ -39,12 +40,24 @@ class DashboardPostController extends Controller
             'title' => 'required:max:255',
             'slug' => 'required|unique:posts',
             'category_id' => 'required',
-            // 'image' => 'required|mimes:jpg,png,jpeg',
+            'image' => 'image|file|max:2048',
             'body' => 'required'
         ]);
 
         $validatedData['user_id'] = auth()->user()->id;
         $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 200);
+
+        if ($request->file('image')) {
+            $images = $request->file('image');
+            $path = $images->store('post-images');
+            $location = "";
+            $location_real = $location . $path;
+            $validatedData['image'] = $location_real;
+
+            if ($request->oldImage) {
+                Storage::delete($request->oldImage);
+            }
+        }
 
         Post::create($validatedData);
 
